@@ -1,0 +1,15 @@
+import express from 'express';
+import { createIncident, listIncidents, getIncidentById, updateIncident, deleteIncident } from '../controllers/incident.controller.js';
+
+const router = express.Router();
+
+router.route('/')
+  .get(listIncidents)       // Get all incidents
+  .post(createIncident);     // Create a new incident
+
+router.route('/:incidentId')
+  .get(getIncidentById)      // Get incident by ID
+  .put(updateIncident)       // Update incident by ID
+  .delete(deleteIncident);   // Delete incident by ID
+
+export default router;
