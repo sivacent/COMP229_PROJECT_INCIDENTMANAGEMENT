@@ -1,6 +1,6 @@
 import express from 'express';
-import { createUser, listUsers, getUserById, updateUser, deleteUser } from '../controllers/user.controller.js';
-
+//import { createUser, listUsers, getUserById, updateUser, deleteUser } from '../controllers/user.controller.js';
+import userCtrl from '../controllers/user.controller.js' 
 // const router = express.Router();
 
 // router.route('/')
@@ -30,8 +30,3 @@ import { createUser, listUsers, getUserById, updateUser, deleteUser } from '../c
   router.route('/api/users/:userId').delete(userCtrl.remove)
   
   export default router
- 
-
-
-
-  export default router;
