@@ -27,8 +27,8 @@ export default function Menu(){
           <HomeIcon/>
         </IconButton>
       </Link>
-      <Link to="/users">
-        <Button style={isActive(location, "/users")}>Users</Button>
+      <Link to="/user">
+        <Button style={isActive(location, "/incidents")}>Incidents</Button>
       </Link>
       {
         !auth.isAuthenticated() && (<span>

@@ -28,7 +28,7 @@ export default function Home() {
 
             <Typography variant="h6" className={classes.title}>Home Page</Typography>
             <CardMedia className={classes.media}
-                image={teamAlpha} title="Unicorn Bicycle" />
+                image={teamAlpha} title="Team Alpha incident Management" />
             <CardContent>
                 <Typography variant="body2" component="p">
                     Welcome to the Incident Management Project from Team Alpha.
