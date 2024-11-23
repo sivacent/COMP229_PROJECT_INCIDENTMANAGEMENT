@@ -6,29 +6,27 @@ import { jwtSecret } from "../config/config.js"; // Ensure jwtSecret is correctl
 // Signin function
 export const signin = async (req, res) => {
     try {
-        const user = await User.findOne({ email: req.body.email });
-        if (!user) {
-            return res.status(401).json({ error: "User not found" });
-        }
-        if (!user.authenticate(req.body.password)) {
-            return res.status(401).json({ error: "Email and password don't match" });
-        }
-
-        // Generate token
-        const token = jwt.sign({ _id: user._id }, jwtSecret);
-
-        // Set cookie with token
-        res.cookie("t", token, { expires: new Date(Date.now() + 9999 * 1000), httpOnly: true });
-
-        // Return user details and token
-        return res.json({
-            token,
-            user: { _id: user._id, name: user.name, email: user.email },
-        });
+      const user = await User.findOne({ email: req.body.email });
+      if (!user) {
+        return res.status(401).json({ error: 'User not found' });
+      }
+  
+      if (!user.authenticate(req.body.password)) {
+        return res.status(401).json({ error: 'Email and password do not match' });
+      }
+  
+      // Include _id in the token payload
+      const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+  
+      res.cookie('t', token, { expire: new Date() + 9999 });
+      return res.json({
+        token,
+        user: { _id: user._id, name: user.name, email: user.email },
+      });
     } catch (err) {
-        return res.status(401).json({ error: "Could not sign in" });
+      return res.status(401).json({ error: 'Could not sign in' });
     }
-};
+  };
 
 // Signout function
 export const signout = (req, res) => {
@@ -38,10 +36,10 @@ export const signout = (req, res) => {
 
 // Middleware to require signin
 export const requireSignin = expressjwt({
-    secret: jwtSecret, // Use your JWT secret here
-    algorithms: ["HS256"], // Specify the algorithm used for signing
-    userProperty: "auth", // Attach decoded token payload to req.auth
-});
+    secret: process.env.JWT_SECRET,
+    algorithms: ['HS256'],
+    userProperty: 'auth', // Adds authenticated user info to req.auth
+  });
 
 // Middleware to check authorization
 export const hasAuthorization = (req, res, next) => {

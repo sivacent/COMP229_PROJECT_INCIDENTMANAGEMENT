@@ -15,10 +15,10 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
         <Link className="navbar-brand" to="/">
-        <img
-            src="/TeamAlpha.jpg" 
+          <img
+            src="/TeamAlpha.jpg"
             alt="Logo"
-            style={{ height: '40px', marginRight: '10px' }} 
+            style={{ height: '40px', marginRight: '10px' }}
           />
           Incident Management
         </Link>
@@ -47,7 +47,10 @@ const Navbar = () => {
             ) : (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/incidents">Incidents</Link>
+                  <Link className="nav-link" to="/incidents">View Incidents</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/incidents/create">Add Incident</Link> {/* Add this */}
                 </li>
                 <li className="nav-item">
                   <button className="btn btn-link nav-link" onClick={handleLogout}>

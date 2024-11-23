@@ -4,6 +4,8 @@ import Navbar from './components/Navbar';
 import Signup from './pages/Signup';
 import Signin from './pages/Signin';
 import Incidents from './pages/Incidents';
+import CreateIncident from './pages/CreateIncident';
+import EditIncident from './pages/EditIncident';
 import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
@@ -20,6 +22,22 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <Incidents />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/incidents/create"
+            element={
+              <ProtectedRoute>
+                <CreateIncident />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/incidents/edit/:incidentId"
+            element={
+              <ProtectedRoute>
+                <EditIncident />
               </ProtectedRoute>
             }
           />

@@ -12,4 +12,8 @@ router.route('/:incidentId')
   .put(updateIncident)       // Update incident by ID
   .delete(deleteIncident);   // Delete incident by ID
 
+
+  router.route('/:incidentId')
+  .delete(requireSignin, deleteIncident); // Add this
+
 export default router;
