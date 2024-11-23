@@ -19,9 +19,9 @@ const IncidentSchema = new mongoose.Schema({
         default: Date.now
     },
     createdBy: {
-        type: String,
-        ref: 'User',
-        
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User', // Ensure this references the User model
+        required: true // Optional, but recommended if every incident must have a creator
     }
 });
 

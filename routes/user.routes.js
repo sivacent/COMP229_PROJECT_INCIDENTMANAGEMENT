@@ -1,32 +1,20 @@
 import express from 'express';
-//import { createUser, listUsers, getUserById, updateUser, deleteUser } from '../controllers/user.controller.js';
-import userCtrl from '../controllers/user.controller.js' 
-// const router = express.Router();
+import { createUser, listUsers, getUserById, updateUser, deleteUser, userByID } from '../controllers/user.controller.js';
+import { requireSignin, hasAuthorization } from '../controllers/auth.controller.js';
 
-// router.route('/')
-//   .get(listUsers)       // Get all users
-//   .post(createUser);     // Create a new user
+const router = express.Router();
 
-// router.route('/:userId')
-//   .get(getUserById)      // Get user by ID
-//   .put(updateUser)       // Update user by ID
-//   .delete(deleteUser);   // Delete user by ID
+// Define user routes
+router.route('/')
+    .get(listUsers)
+    .post(createUser);
 
+router.route('/:userId')
+    .get(requireSignin, getUserById)
+    .put(requireSignin, hasAuthorization, updateUser)
+    .delete(requireSignin, hasAuthorization, deleteUser);
 
-  import authCtrl from '../controllers/auth.controller.js'
+// Middleware to handle `userId` parameter
+router.param('userId', userByID);
 
-  const router = express.Router()
-  router.route('/api/users').post(userCtrl.create)
-  router.route('/api/users').get(userCtrl.list)
-  router.route('/api/users/:userId')
- .get(authCtrl.requireSignin, userCtrl.read)
- .put(authCtrl.requireSignin, authCtrl.hasAuthorization, 
- userCtrl.update)
- .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, 
- userCtrl.remove)
- router.param('userId', userCtrl.userByID)
-  router.route('/api/users/:userId').get(userCtrl.read)
-  router.route('/api/users/:userId').put(userCtrl.update)
-  router.route('/api/users/:userId').delete(userCtrl.remove)
-  
-  export default router
+export default router; // Ensure this is the default export

@@ -2,12 +2,18 @@ import Incident from '../models/incident.model.js';
 
 // Create incidents
 export const createIncident = async (req, res) => {
+    const { title, description, createdBy } = req.body;
+
+    if (!title || !description || !createdBy) {
+        return res.status(400).json({ error: 'Title, description, and createdBy are required.' });
+    }
+
     try {
-        const incident = new Incident(req.body);
+        const incident = new Incident({ title, description, createdBy });
         await incident.save();
         res.status(201).json({ message: 'Incident created successfully', incident });
     } catch (error) {
-        res.status(400).json({ error: 'Error creating incident' });
+        res.status(400).json({ error: error.message });
     }
 };
 
@@ -32,7 +38,7 @@ export const updateIncident = async (req, res) => {
         if (!incident) return res.status(404).json({ error: "Incident not found" });
         res.json({ message: 'Incident updated successfully', incident });
     } catch (error) {
-        res.status(400).json({ error: errorHandler.getErrorMessage(error) });
+        res.status(400).json({ error: error.message });;
     }
 };
 
@@ -43,7 +49,7 @@ export const deleteIncident = async (req, res) => {
         if (!incident) return res.status(404).json({ error: "Incident not found" });
         res.json({ message: 'Incident deleted successfully', incident });
     } catch (error) {
-        res.status(400).json({ error: errorHandler.getErrorMessage(error) });
+        res.status(400).json({ error: error.message });;
     }
 };
 
@@ -54,6 +60,6 @@ export const getIncidentById = async (req, res) => {
         if (!incident) return res.status(404).json({ error: "Incident not found" });
         res.json(incident);
     } catch (error) {
-        res.status(400).json({ error: errorHandler.getErrorMessage(error) });
+        res.status(400).json({ error: error.message });;
     }
 };
