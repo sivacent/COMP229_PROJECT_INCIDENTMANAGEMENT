@@ -22,7 +22,7 @@ const Incidents = () => {
   }, []);
 
   const handleDelete = async (incidentId) => {
-    const confirmed = window.confirm('Are you sure you want to delete this incident?');
+    const confirmed = window.confirm('Are you sure to delete this incident?');
     if (!confirmed) return;
   
     const token = localStorage.getItem('token');

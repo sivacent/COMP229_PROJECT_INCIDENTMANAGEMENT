@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/axios';
-
+// Sign in method
 const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

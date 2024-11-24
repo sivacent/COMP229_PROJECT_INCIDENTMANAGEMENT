@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import api from '../api/axios';
-
+//Sign up method
 const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
