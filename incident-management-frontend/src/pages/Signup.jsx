@@ -19,7 +19,7 @@ const Signup = () => {
 
   return (
     <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
-      <div className="card p-4" style={{ width: '400px' }}>
+      <div className="card p-4" style={{ width: '410px' }}>
         <h1 className="text-center mb-4">Sign Up</h1>
         <form onSubmit={handleSignup}>
           <div className="mb-3">

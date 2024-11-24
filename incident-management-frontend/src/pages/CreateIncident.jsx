@@ -32,7 +32,7 @@ const CreateIncident = () => {
 
   return (
     <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
-      <div className="card p-4" style={{ width: '400px' }}>
+      <div className="card p-4" style={{ width: '410px' }}>
         <h1 className="text-center mb-4">Create Incident</h1>
         <form onSubmit={handleCreateIncident}>
           <div className="mb-3">
