@@ -1,5 +1,6 @@
 import express from 'express';
 import { createIncident, listIncidents, getIncidentById, updateIncident, deleteIncident } from '../controllers/incident.controller.js';
+import {requireSignin} from '../controllers/auth.controller.js'; 
 
 const router = express.Router();
 
